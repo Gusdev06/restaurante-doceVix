@@ -1,10 +1,24 @@
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import { TabPanelFoods } from './styles';
+import { TabPanelFoods } from "./styles";
 import "react-tabs/style/react-tabs.css";
 import CardFood from "../../components/CardFood";
-import imgTeste from '../../images/foodImage.png'
+import { useEffect, useState } from "react";
 
 const Cardapio = () => {
+  const API = "https://apirestaurante.onrender.com/lanches";
+  const [food, setNome] = useState([]);
+
+  useEffect(() => {
+    async function fetchdata() {
+      const response = await fetch(API);
+      const data = await response.json();
+
+      setNome(data);
+    }
+
+    fetchdata();
+  }, []);
+
   return (
     <>
       <Tabs>
@@ -20,27 +34,43 @@ const Cardapio = () => {
             <Tab>Quinta Feira</Tab>
             <Tab>Sexta Feira</Tab>
             <TabPanelFoods>
-                <CardFood descricao="Arroz, feijão, Strogonoff de  frango e batata palha..." nome="Strogonoff de frango" valor={26.00} imgComida={imgTeste} />
-                <CardFood descricao="Arroz, feijão, Strogonoff de  frango e batata palha..." nome="Strogonoff de Carne" valor={26.00} imgComida={imgTeste} />
-                <CardFood descricao="Arroz, feijão, Strogonoff de  frango e batata palha..." nome="Strogonoff de Porco" valor={26.00} imgComida={imgTeste} />
+            {food.map(({ id, item, preco, img, descricao, sem }) => {
+                if (sem === 'segunda' || sem === null) {
+                  return (
+                    <CardFood
+                      key={id}
+                      nome={item}
+                      valor={preco}
+                      descricao={descricao}
+                      imgComida={img}
+                      semana={sem}
+                    />
+                  );
+                }
+              })}
             </TabPanelFoods>
             <TabPanelFoods>
-               Terça
+              {food.map(({ id, item, preco, img, descricao, sem }) => {
+                if (sem === 'terca' || sem === null) {
+                  return (
+                    <CardFood
+                      key={id}
+                      nome={item}
+                      valor={preco}
+                      descricao={descricao}
+                      imgComida={img}
+                      semana={sem}
+                    />
+                  );
+                }
+              })}
             </TabPanelFoods>
-            <TabPanelFoods>
-                Quarta
-            </TabPanelFoods>
-            <TabPanelFoods>
-               Quinta
-            </TabPanelFoods>
-            <TabPanelFoods>
-                Sexta
-            </TabPanelFoods>
+            <TabPanelFoods>Quarta</TabPanelFoods>
+            <TabPanelFoods>Quinta</TabPanelFoods>
+            <TabPanelFoods>Sexta</TabPanelFoods>
           </Tabs>
         </TabPanel>
-        <TabPanel>
-          requisição dos lanches
-        </TabPanel>
+        <TabPanel>requisição dos lanches</TabPanel>
       </Tabs>
     </>
   );
