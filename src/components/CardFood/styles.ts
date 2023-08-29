@@ -6,6 +6,7 @@ export const Card = styled.div`
   padding: 4px;
   border-radius: 7px;
   border: 1px solid #cacaca;
+  cursor: pointer;
 `;
 
 export const DivInfos = styled.div`

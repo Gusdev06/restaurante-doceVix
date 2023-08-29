@@ -3,6 +3,7 @@ import EstiloGlobal, { Container } from "./styles";
 import Cabecalho from "./components/Cabecalho";
 import Cardapio from "./containers/Cardapio";
 
+
 function App() {
   return (
     <>
