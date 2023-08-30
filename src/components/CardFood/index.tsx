@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import * as S from "./styles";
 import Modal from "react-modal";
 Modal.setAppElement("#root");
@@ -13,6 +13,7 @@ export type Props = {
 
 const CardFood = ({ nome, descricao, valor, imgComida, semana }: Props) => {
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [valorFinal, setValorFinal] = useState(valor);
 
   const AbrirModal = () => {
     setIsOpen(true);
@@ -20,6 +21,10 @@ const CardFood = ({ nome, descricao, valor, imgComida, semana }: Props) => {
 
   const FecharModal = () => {
     setIsOpen(false);
+  };
+
+  const alteraValor = (event: ChangeEvent<HTMLInputElement>) => {
+    setValorFinal(Number(event.target.value) * valor);
   };
 
   return (
@@ -35,11 +40,34 @@ const CardFood = ({ nome, descricao, valor, imgComida, semana }: Props) => {
           </div>
         </S.DivInfos>
       </S.Card>
-      <Modal isOpen={modalIsOpen} onRequestClose={FecharModal}>
-        <h2>Olá</h2>
-        <button onClick={FecharModal}>Fechar</button>
-        <div>Eu sou oi giane modal</div>
-      </Modal>
+      <S.ModalStyle isOpen={modalIsOpen} onRequestClose={FecharModal}>
+        <div>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <S.BiDishStyle />
+            <S.FiXStyle onClick={FecharModal} />
+          </div>
+          <div style={{ textAlign: "center" }}>
+            <S.ImgCardModal src={imgComida} />
+          </div>
+        </div>
+        <h2>{nome}</h2>
+        <p>{descricao}</p>
+        <textarea placeholder="Observações (opcional)" />
+        <S.DivButtons>
+          <input
+            onChange={alteraValor}
+            type="number"
+            placeholder="Quantidade"
+            min={1}
+            required
+          />
+          <S.BotaoAdicionar type="button">
+            <S.ImPlusStyle />
+            Adicionar
+            <div>R${valorFinal.toFixed(2)}</div>
+          </S.BotaoAdicionar>
+        </S.DivButtons>
+      </S.ModalStyle>
     </>
   );
 };
