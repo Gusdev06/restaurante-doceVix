@@ -6,3 +6,5 @@ export const TabPanelFoods = styled(TabPanel)`
   gap: 22px;
   grid-template-columns: repeat(3, 1fr);
 `;
+
+
