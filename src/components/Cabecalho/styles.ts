@@ -17,10 +17,10 @@ export const Logo = styled.div`
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  width: 140px;
-  height: 140px;
+  width: 200px;
+  height: 200px;
   position: absolute;
-  bottom: 76%;
+
   transition: all 0.4s ease;
 
   &:hover {
