@@ -1,5 +1,5 @@
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import { TabPanelFoods, TabSem } from "./styles";
+import { TabPanelFoods } from "./styles";
 import "react-tabs/style/react-tabs.css";
 import CardFood from "../../components/CardFood";
 import {  useEffect, useState } from "react";

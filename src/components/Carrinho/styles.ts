@@ -18,5 +18,21 @@ border-radius: 20px 20px 0px 0px;
 `
 
 export const ModalStyleCart = styled(ModalStyle)`
-color: red;
+padding: 40px;
+height: 700px;
+text-align: center;
 `
+
+export const ModalTitle = styled.h1 `
+border-bottom: 1px #E1E1E1 solid;
+padding-bottom: 28px;
+`
+
+export const ModalButton = styled.div`
+margin-top: 24px;
+padding: 9px;
+text-align: center;
+border-radius: 10px;
+border: 1px solid #E1E1E1;
+`
+
