@@ -1,27 +1,17 @@
 import { ChangeEvent, useState } from "react";
 import * as S from "./styles";
 import Modal from "react-modal";
+import { useDispatch } from "react-redux";
+import { adicionar } from "../../store/reducers/carrinho";
+import Comida from "../../models/Comida";
 Modal.setAppElement("#root");
 
-export type Props = {
-  nome: string;
-  descricao: string;
-  valor: GLfloat;
-  imgComida: string;
-  semana: string;
-};
+export type Props = Comida;
 
-const CardFood = ({ nome, descricao, valor, imgComida, semana }: Props) => {
+const CardFood = ({ nome, descricao, valor, imgComida, semana, id }: Props) => {
+  const dispatch = useDispatch();
   const [modalIsOpen, setIsOpen] = useState(false);
   const [valorFinal, setValorFinal] = useState(valor);
-  const [carrinho, setCarrinho] = useState(0);
-
-
-  const adcCarrinho = (preco: number) => {
-    
-    setCarrinho(preco)
-    console.log()
-  }
 
   const AbrirModal = () => {
     setIsOpen(true);
@@ -29,10 +19,7 @@ const CardFood = ({ nome, descricao, valor, imgComida, semana }: Props) => {
 
   const FecharModal = () => {
     setIsOpen(false);
-  };
-
-  const alteraValor = (event: ChangeEvent<HTMLInputElement>) => {
-    setValorFinal(Number(event.target.value) * valor);
+    setValorFinal(valor);
   };
 
   return (
@@ -42,7 +29,6 @@ const CardFood = ({ nome, descricao, valor, imgComida, semana }: Props) => {
         <S.DivInfos>
           <label htmlFor={nome}>{nome}</label>
           <p>{descricao}</p>
-        
           <div>
             <span>R${valor.toFixed(2)}</span>
           </div>
@@ -62,19 +48,16 @@ const CardFood = ({ nome, descricao, valor, imgComida, semana }: Props) => {
         <p>{descricao}</p>
         <textarea placeholder="Observações (opcional)" />
         <S.DivButtons>
-          <input
-            onChange={alteraValor}
-            type="number"
-            placeholder="Quantidade"
-            min={1}
-            required
-          />
-          <S.BotaoAdicionar  onClick={() => adcCarrinho(valor)} type="button">
-            <S.ImPlusStyle   />
+          <S.BotaoAdicionar
+            type="button"
+            onClick={() =>
+              dispatch(adicionar({ nome, descricao, imgComida, semana, valor, id }))
+            }
+          >
+            <S.ImPlusStyle />
             Adicionar
             <div>R${valorFinal.toFixed(2)}</div>
           </S.BotaoAdicionar>
-          <p>{carrinho}</p>
         </S.DivButtons>
       </S.ModalStyle>
     </>
