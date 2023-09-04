@@ -50,7 +50,7 @@ export const StatusRestaurante = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
   position: absolute;
   right: 0;
   margin-top: 52px;
@@ -58,14 +58,14 @@ export const StatusRestaurante = styled.span`
 
   width: 101px;
   height: 28px;
-  
+
   background-color: #25973e;
   color: #fff;
   font-weight: bold;
-  font-size: 14px; 
+  font-size: 14px;
   border-radius: 30px;
 `;
 
 export const StatusRestauranteFechado = styled(StatusRestaurante)`
-  background-color: #cf1920;  
-`
+  background-color: #cf1920;
+`;
