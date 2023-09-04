@@ -14,6 +14,14 @@ export type Props = {
 const CardFood = ({ nome, descricao, valor, imgComida, semana }: Props) => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [valorFinal, setValorFinal] = useState(valor);
+  const [carrinho, setCarrinho] = useState(0);
+
+
+  const adcCarrinho = (preco: number) => {
+    
+    setCarrinho(preco)
+    console.log()
+  }
 
   const AbrirModal = () => {
     setIsOpen(true);
@@ -34,7 +42,7 @@ const CardFood = ({ nome, descricao, valor, imgComida, semana }: Props) => {
         <S.DivInfos>
           <label htmlFor={nome}>{nome}</label>
           <p>{descricao}</p>
-          <p>{semana}</p>
+        
           <div>
             <span>R${valor.toFixed(2)}</span>
           </div>
@@ -61,11 +69,12 @@ const CardFood = ({ nome, descricao, valor, imgComida, semana }: Props) => {
             min={1}
             required
           />
-          <S.BotaoAdicionar type="button">
-            <S.ImPlusStyle />
+          <S.BotaoAdicionar  onClick={() => adcCarrinho(valor)} type="button">
+            <S.ImPlusStyle   />
             Adicionar
             <div>R${valorFinal.toFixed(2)}</div>
           </S.BotaoAdicionar>
+          <p>{carrinho}</p>
         </S.DivButtons>
       </S.ModalStyle>
     </>

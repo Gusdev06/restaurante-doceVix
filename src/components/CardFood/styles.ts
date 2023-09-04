@@ -7,7 +7,7 @@ import Modal from "react-modal";
 export const Card = styled.div`
   margin-top: 16px;
   display: flex;
-  padding: 4px;
+  padding: 10px;
   border-radius: 7px;
   border: 1px solid #cacaca;
   cursor: pointer;

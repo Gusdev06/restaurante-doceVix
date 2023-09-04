@@ -2,11 +2,13 @@ import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import { TabPanelFoods } from "./styles";
 import "react-tabs/style/react-tabs.css";
 import CardFood from "../../components/CardFood";
-import { useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
+import Carrinho from '../../components/Carrinho'
 
 const Cardapio = () => {
   const API = "https://apirestaurante.onrender.com/lanches";
   const [food, setNome] = useState([]);
+  
 
   useEffect(() => {
     async function fetchdata() {
@@ -64,7 +66,9 @@ const Cardapio = () => {
                   );
                 }
               })}
+
             </TabPanelFoods>
+            
             <TabPanelFoods>Quarta</TabPanelFoods>
             <TabPanelFoods>Quinta</TabPanelFoods>
             <TabPanelFoods>Sexta</TabPanelFoods>
@@ -72,6 +76,8 @@ const Cardapio = () => {
         </TabPanel>
         <TabPanel>requisição dos lanches</TabPanel>
       </Tabs>
+      <Carrinho/>
+
     </>
   );
 };
