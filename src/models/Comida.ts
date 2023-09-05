@@ -5,6 +5,7 @@ class Comida {
   valor: GLfloat;
   imgComida: string;
   semana: string;
+  quantidade: number;
 
   constructor(
     id: number,
@@ -12,7 +13,8 @@ class Comida {
     descricao: string,
     valor: GLfloat,
     imgComida: string,
-    semana: string
+    semana: string,
+    quantidade: number
   ) {
     this.id = id;
     this.nome = nome;
@@ -20,6 +22,7 @@ class Comida {
     this.valor = valor;
     this.imgComida = imgComida;
     this.semana = semana;
+    this.quantidade = 1
   }
 }
 

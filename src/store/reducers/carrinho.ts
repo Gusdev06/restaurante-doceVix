@@ -3,11 +3,11 @@ import Comida from "../../models/Comida";
 
 type CarrinhoState = {
   itens: Comida[];
-}
+};
 
 const initialState: CarrinhoState = {
   itens: [],
-}
+};
 
 const carrinhoSlice = createSlice({
   name: "carrinho",
@@ -15,11 +15,21 @@ const carrinhoSlice = createSlice({
 
   reducers: {
     adicionar: (state, action: PayloadAction<Comida>) => {
-      const comida = action.payload
-        state.itens.push(comida);
-    }
-  }
-})
+      const novaComida = action.payload;
+      const comidaExistente = state.itens.find((comida) => comida.id === novaComida.id)
 
-export const { adicionar } = carrinhoSlice.actions
-export default carrinhoSlice.reducer
+      if (comidaExistente) {
+        comidaExistente.quantidade += 1;
+      } else {
+        state.itens.push(novaComida);
+      }
+    },
+    remover: (state, action: PayloadAction<number>) => {
+      const idItemARemover = action.payload
+      state.itens = state.itens.filter((comida) => comida.id !== idItemARemover)
+    }
+  },
+});
+
+export const { adicionar, remover } = carrinhoSlice.actions;
+export default carrinhoSlice.reducer;

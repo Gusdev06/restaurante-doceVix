@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import * as S from "./styles";
 import Modal from "react-modal";
 import { useDispatch } from "react-redux";
@@ -11,7 +11,6 @@ export type Props = Comida;
 const CardFood = ({ nome, descricao, valor, imgComida, semana, id }: Props) => {
   const dispatch = useDispatch();
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [valorFinal, setValorFinal] = useState(valor);
 
   const AbrirModal = () => {
     setIsOpen(true);
@@ -19,7 +18,6 @@ const CardFood = ({ nome, descricao, valor, imgComida, semana, id }: Props) => {
 
   const FecharModal = () => {
     setIsOpen(false);
-    setValorFinal(valor);
   };
 
   return (
@@ -51,12 +49,14 @@ const CardFood = ({ nome, descricao, valor, imgComida, semana, id }: Props) => {
           <S.BotaoAdicionar
             type="button"
             onClick={() =>
-              dispatch(adicionar({ nome, descricao, imgComida, semana, valor, id }))
+              dispatch(
+                adicionar({ nome, descricao, imgComida, semana, valor, id, quantidade: 1 })
+              )
             }
           >
             <S.ImPlusStyle />
             Adicionar
-            <div>R${valorFinal.toFixed(2)}</div>
+            <div>R${valor.toFixed(2)}</div>
           </S.BotaoAdicionar>
         </S.DivButtons>
       </S.ModalStyle>

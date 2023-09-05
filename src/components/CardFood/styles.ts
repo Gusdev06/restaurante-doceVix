@@ -23,7 +23,8 @@ export const DivInfos = styled.div`
   }
 
   span {
-    font-size: 12px;
+    font-size: 13px;
+    font-weight: bold;
     color: #189633;
   }
 
