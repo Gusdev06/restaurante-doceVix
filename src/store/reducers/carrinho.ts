@@ -26,7 +26,16 @@ const carrinhoSlice = createSlice({
     },
     remover: (state, action: PayloadAction<number>) => {
       const idItemARemover = action.payload
-      state.itens = state.itens.filter((comida) => comida.id !== idItemARemover)
+      const indexItemARemover = state.itens.findIndex((comida) => comida.id === idItemARemover)
+
+      if(indexItemARemover !== -1) {
+        if (state.itens[indexItemARemover].quantidade > 1) {
+          state.itens[indexItemARemover].quantidade -= 1
+        } else {
+          state.itens.splice(indexItemARemover, 1)
+        }
+      }
+ 
     }
   },
 });

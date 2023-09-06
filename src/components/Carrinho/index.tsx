@@ -4,13 +4,28 @@ import Modal from "react-modal";
 import { RootReducer } from "../../store";
 import { useDispatch, useSelector } from "react-redux";
 import Comida from "../../models/Comida";
-import { remover } from "../../store/reducers/carrinho";
+import { adicionar, remover } from "../../store/reducers/carrinho";
 Modal.setAppElement("#root");
 
 const Carrinho = () => {
   const dispatch = useDispatch();
   const itens = useSelector((state: RootReducer) => state.carrinho.itens);
   const [modalIsOpen, setIsOpen] = useState(false);
+
+
+  const AdcComida = (item: Comida) => {
+    dispatch(adicionar(item))
+  }
+
+  const RemoverComida = (item: Comida) => {
+    // Verifique se a quantidade atual é maior que 0 antes de remover
+    if (item.quantidade > 0) {
+      // Despache a ação 'remover' para diminuir a quantidade de comida
+      dispatch(remover(item.id));
+    }
+  }
+  
+  
 
   const valorTotal = itens.reduce((acc: number, item: Comida) => {
     acc += item.valor * item.quantidade;
@@ -25,6 +40,10 @@ const Carrinho = () => {
   const FecharModal = () => {
     setIsOpen(false);
   };
+
+
+
+
 
   return (
     <>
@@ -119,7 +138,7 @@ const Carrinho = () => {
 
             <S.ModalLabel>
               <input type="radio" name="entrega" value="delivey" />
-              Delivey
+              Delivery
             </S.ModalLabel>
           </S.ModalForm>
           <S.ModalPrice>
