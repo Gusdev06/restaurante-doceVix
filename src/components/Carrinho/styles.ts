@@ -1,11 +1,25 @@
 import styled from "styled-components";
 import { ModalStyle } from "../CardFood/styles";
-import { BsCart4, BsTrash3, BsWallet2 } from "react-icons/bs";
+import {
+  BsCart4,
+  BsTrash3,
+  BsWallet2,
+  BsCart2,
+  BsArrowRightCircle,
+} from "react-icons/bs";
 import { FiX } from "react-icons/fi";
+
+export const BsCart2Style = styled(BsCart2)`
+  color: #fff;
+`;
+
+export const BsArrowRightCircleStyle = styled(BsArrowRightCircle)`
+  color: #fff;
+`;
 
 export const BsTrash3Style = styled(BsTrash3)`
   color: #eb3223;
-  font-size: 14px;
+  font-size: 18px;
 `;
 
 export const FiXStyle = styled(FiX)`
@@ -46,7 +60,8 @@ export const CardCarrinho = styled.div`
 
 export const ModalStyleCart = styled(ModalStyle)`
   padding: 40px;
-  height: 700px;
+  max-height: 80vh;
+  overflow-y: auto;
 `;
 
 export const ModalTitle = styled.h1`
@@ -64,10 +79,10 @@ export const ModalButton = styled.div`
 
 export const ModalItens = styled.ul`
   li {
-    padding: 5px;
-    margin-bottom: 24px;
     display: flex;
     justify-content: space-between;
+    padding: 5px;
+    margin-bottom: 24px;
     border-bottom: 1px solid #e1e1e1;
   }
 `;
@@ -100,4 +115,45 @@ export const ModalPrice = styled.div`
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #e1e1e1;
+`;
+
+export const ModalButtons = styled.div`
+  display: grid;
+  gap: 6px;
+  grid-template-columns: repeat(2, 1fr);
+`;
+
+export const BotaoFinalizar = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  cursor: pointer;
+  margin-top: 14px;
+  font-size: 15px;
+  padding: 10px 15px;
+
+  color: #fff;
+  background-color: #20695f;
+
+  border: none;
+  border-radius: 8px;
+
+  &:hover {
+    background-color: #2f4f2f;
+  }
+`;
+
+export const BotaoContinuarComprando = styled(BotaoFinalizar)`
+  background-color: #666;
+
+  &:hover {
+    background-color: #474a51;
+  }
+`;
+
+export const BotaoDeletarComida = styled.button`
+  cursor: pointer;
+  border: none;
 `;

@@ -35,7 +35,7 @@ const Cardapio = () => {
             <Tab>Quinta Feira</Tab>
             <Tab>Sexta Feira</Tab>
             <TabPanelFoods>
-              {food.map(({ id, item, preco, img, descricao, sem }) => {
+              {food.map(({ id, item, preco, img, descricao, sem, quantidade }) => {
                 if (sem === "segunda" || sem === null) {
                   return (
                     <CardFood
@@ -46,13 +46,14 @@ const Cardapio = () => {
                       descricao={descricao}
                       imgComida={img}
                       semana={sem}
+                      quantidade={quantidade}
                     />
                   );
                 }
               })}
             </TabPanelFoods>
             <TabPanelFoods>
-              {food.map(({ id, item, preco, img, descricao, sem }) => {
+              {food.map(({ id, item, preco, img, descricao, sem, quantidade }) => {
                 if (sem === "terca" || sem === null) {
                   return (
                     <CardFood
@@ -63,6 +64,7 @@ const Cardapio = () => {
                       descricao={descricao}
                       imgComida={img}
                       semana={sem}
+                      quantidade={quantidade}
                     />
                   );
                 }

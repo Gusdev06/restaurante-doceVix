@@ -8,9 +8,7 @@ const EstiloGlobal = createGlobalStyle`
     font-family: 'Quicksand', sans-serif;
     list-style: none;
 }
-
 `;
-
 
 export const Container = styled.div`
   max-width: 1200px;

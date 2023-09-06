@@ -2,16 +2,18 @@ import { useState } from "react";
 import * as S from "./styles";
 import Modal from "react-modal";
 import { RootReducer } from "../../store";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Comida from "../../models/Comida";
+import { remover } from "../../store/reducers/carrinho";
 Modal.setAppElement("#root");
 
 const Carrinho = () => {
+  const dispatch = useDispatch();
   const itens = useSelector((state: RootReducer) => state.carrinho.itens);
   const [modalIsOpen, setIsOpen] = useState(false);
 
   const valorTotal = itens.reduce((acc: number, item: Comida) => {
-    acc += item.valor;
+    acc += item.valor * item.quantidade;
 
     return acc;
   }, 0);
@@ -51,12 +53,15 @@ const Carrinho = () => {
         <S.ModalItens>
           {itens.map((item) => (
             <li key={item.id}>
-              <span>1x</span>
+              <span>{item.quantidade}x</span>
               <span>{item.nome}</span>
               <b>R${item.valor}</b>
-              <button type="submit">
+              <S.BotaoDeletarComida
+                onClick={() => dispatch(remover(item.id))}
+                type="submit"
+              >
                 <S.BsTrash3Style />
-              </button>
+              </S.BotaoDeletarComida>
             </li>
           ))}
         </S.ModalItens>
@@ -121,6 +126,16 @@ const Carrinho = () => {
             <span>TOTAL</span>
             <span>R${valorTotal.toFixed(2)}</span>
           </S.ModalPrice>
+          <S.ModalButtons>
+            <S.BotaoContinuarComprando onClick={FecharModal}>
+              <S.BsCart2Style />
+              Continuar comprando
+            </S.BotaoContinuarComprando>
+            <S.BotaoFinalizar>
+              <S.BsArrowRightCircleStyle />
+              Finalizar compra
+            </S.BotaoFinalizar>
+          </S.ModalButtons>
         </S.ModalPayment>
       </S.ModalStyleCart>
     </>
