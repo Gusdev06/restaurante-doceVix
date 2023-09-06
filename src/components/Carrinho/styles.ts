@@ -43,19 +43,23 @@ export const BsWallet2Style = styled(BsWallet2)`
 `;
 
 export const CardCarrinho = styled.div`
+  position: fixed;
+  bottom: 0;
+  left: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   cursor: pointer;
 
-  padding: 10px;
+  padding: 18px;
   margin-top: 50px;
 
   width: 100%;
   height: 50px;
 
   color: #fff;
+  font-weight: bold;
   background-color: ${variables.corPrincipal};
   border-radius: 20px 20px 0px 0px;
 `;

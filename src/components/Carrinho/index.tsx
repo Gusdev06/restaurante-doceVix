@@ -29,7 +29,7 @@ const Carrinho = () => {
   return (
     <>
       <S.CardCarrinho onClick={AbrirModal}>
-        <span>Meu carrinho({itens.length})</span>
+        <span>Meu carrinho ({itens.length})</span>
         <span>R${valorTotal.toFixed(2)}</span>
       </S.CardCarrinho>
       <S.ModalStyleCart isOpen={modalIsOpen} onRequestClose={FecharModal}>

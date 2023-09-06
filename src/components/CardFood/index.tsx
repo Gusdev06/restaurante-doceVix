@@ -1,6 +1,8 @@
-import { useState } from "react";
 import * as S from "./styles";
 import Modal from "react-modal";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { adicionar } from "../../store/reducers/carrinho";
 import Comida from "../../models/Comida";
@@ -48,11 +50,22 @@ const CardFood = ({ nome, descricao, valor, imgComida, semana, id }: Props) => {
         <S.DivButtons>
           <S.BotaoAdicionar
             type="button"
-            onClick={() =>
+            onClick={() => {
               dispatch(
-                adicionar({ nome, descricao, imgComida, semana, valor, id, quantidade: 1 })
-              )
-            }
+                adicionar({
+                  nome,
+                  descricao,
+                  imgComida,
+                  semana,
+                  valor,
+                  id,
+                  quantidade: 1,
+                })
+              );
+              toast.success(`Item adicionado ao carrinho :D`, {
+                position: toast.POSITION.BOTTOM_LEFT,
+              });
+            }}
           >
             <S.ImPlusStyle />
             Adicionar
