@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import variables from "../../styles/variables";
 
 export const Header = styled.header`
   background: url("https://servidor-estaticos-topaz-eight.vercel.app/Background.png");
@@ -34,11 +35,11 @@ export const DivTitulo = styled.div`
   margin-bottom: 32px;
   h1 {
     font-family: "Anton", sans-serif;
-    color: #031c32;
+    color: ${variables.corPrincipal};
   }
 
   span {
-    color: #b3365b;
+    color: ${variables.corSecundaria};
   }
 
   p {
@@ -59,7 +60,7 @@ export const StatusRestaurante = styled.span`
   width: 101px;
   height: 28px;
 
-  background-color: #25973e;
+  background-color: ${variables.verdeClaro};
   color: #fff;
   font-weight: bold;
   font-size: 14px;
@@ -67,5 +68,5 @@ export const StatusRestaurante = styled.span`
 `;
 
 export const StatusRestauranteFechado = styled(StatusRestaurante)`
-  background-color: #cf1920;
+  background-color: ${variables.vermelho};
 `;

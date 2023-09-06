@@ -16,4 +16,16 @@ export const Container = styled.div`
   margin: 0 auto;
 `;
 
+export const Botao = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  cursor: pointer;
+  padding: 10px 15px;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+`
+
 export default EstiloGlobal;

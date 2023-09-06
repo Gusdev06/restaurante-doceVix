@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import variables from "../../styles/variables";
 import { ModalStyle } from "../CardFood/styles";
 import {
   BsCart4,
@@ -8,6 +9,7 @@ import {
   BsArrowRightCircle,
 } from "react-icons/bs";
 import { FiX } from "react-icons/fi";
+import { Botao } from "../../styles";
 
 export const BsCart2Style = styled(BsCart2)`
   color: #fff;
@@ -18,7 +20,7 @@ export const BsArrowRightCircleStyle = styled(BsArrowRightCircle)`
 `;
 
 export const BsTrash3Style = styled(BsTrash3)`
-  color: #eb3223;
+  color: ${variables.vermelho};
   font-size: 18px;
 `;
 
@@ -54,7 +56,7 @@ export const CardCarrinho = styled.div`
   height: 50px;
 
   color: #fff;
-  background-color: #031c32;
+  background-color: ${variables.corPrincipal};
   border-radius: 20px 20px 0px 0px;
 `;
 
@@ -123,33 +125,22 @@ export const ModalButtons = styled.div`
   grid-template-columns: repeat(2, 1fr);
 `;
 
-export const BotaoFinalizar = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+export const BotaoFinalizar = styled(Botao)`
   gap: 6px;
-
-  cursor: pointer;
   margin-top: 14px;
   font-size: 15px;
-  padding: 10px 15px;
-
-  color: #fff;
-  background-color: #20695f;
-
-  border: none;
-  border-radius: 8px;
+  background-color: ${variables.corBotoesAceitar};
 
   &:hover {
-    background-color: #2f4f2f;
+    background-color: ${variables.verdeEscuro};
   }
 `;
 
 export const BotaoContinuarComprando = styled(BotaoFinalizar)`
-  background-color: #666;
+  background-color: ${variables.cinza};
 
   &:hover {
-    background-color: #474a51;
+    background-color: ${variables.cinzaEscuro};
   }
 `;
 

@@ -1,8 +1,10 @@
+import styled from "styled-components";
+import variables from "../../styles/variables";
 import { FiX } from "react-icons/fi";
 import { BiDish } from "react-icons/bi";
 import { ImPlus } from "react-icons/im";
-import styled from "styled-components";
 import Modal from "react-modal";
+import { Botao } from "../../styles";
 
 export const Card = styled.div`
   margin-top: 16px;
@@ -19,13 +21,13 @@ export const DivInfos = styled.div`
   p {
     margin-bottom: 24px;
     font-size: 12px;
-    color: #928a8a;
+    color: ${variables.cinzaEscuro};
   }
 
   span {
     font-size: 13px;
     font-weight: bold;
-    color: #189633;
+    color: ${variables.verdeClaro};
   }
 
   div {
@@ -99,24 +101,14 @@ export const DivButtons = styled.div`
   gap: 8px;
 `;
 
-export const BotaoAdicionar = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+export const BotaoAdicionar = styled(Botao)`
   gap: 4px;
-
-  background-color: #20695f;
-  border-radius: 5px;
-
+  background-color: ${variables.corBotoesAceitar};
   font-weight: bold;
-  color: #fff;
-  border: none;
-  padding: 10px 15px;
-  cursor: pointer;
   transition: all 0.2s ease;
 
   &:hover {
-    background-color: #2f4f2f;
+    background-color: ${variables.verdeEscuro};
   }
 
   div {
