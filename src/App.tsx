@@ -1,5 +1,5 @@
 import React from "react";
-import EstiloGlobal, { Container } from "./styles";
+import EstiloGlobal, { Container , CabecalhoImg} from "./styles";
 import Cabecalho from "./components/Cabecalho";
 import Cardapio from "./containers/Cardapio";
 import { ToastContainer } from "react-toastify";
@@ -10,8 +10,9 @@ function App() {
   return (
     <Provider store={store}>
       <EstiloGlobal />
-      <Cabecalho />
+      <CabecalhoImg/>
       <Container>
+      <Cabecalho />
         <Cardapio />
       </Container>
       <ToastContainer autoClose={3000} />
