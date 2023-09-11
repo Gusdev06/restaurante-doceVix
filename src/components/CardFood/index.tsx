@@ -27,21 +27,20 @@ const CardFood = ({ nome, descricao, valor, imgComida, semana, id }: Props) => {
       <S.Card onClick={AbrirModal}>
         <S.ImgCard src={imgComida} />
         <S.DivInfos>
-          <label htmlFor={nome}>{nome}</label> <br/>
+          <label htmlFor={nome}>{nome}</label> <br />
           <p>{descricao}</p>
           <S.Preco>
             <span>R${valor.toFixed(2)}</span>
           </S.Preco>
         </S.DivInfos>
 
-        {semana ?
-        <>
-        <S.DiaSemana>
-        <span>{semana}</span> 
-        </S.DiaSemana>
-        </>
-        : null}
-        
+        {semana ? (
+          <>
+            <S.DiaSemana>
+              <span>{semana}</span>
+            </S.DiaSemana>
+          </>
+        ) : null}
       </S.Card>
       <S.ModalStyle isOpen={modalIsOpen} onRequestClose={FecharModal}>
         <div>

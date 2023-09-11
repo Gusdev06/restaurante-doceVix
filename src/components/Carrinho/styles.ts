@@ -22,21 +22,29 @@ export const BsArrowRightCircleStyle = styled(BsArrowRightCircle)`
 export const BsTrash3Style = styled(BsTrash3)`
   color: ${variables.vermelho};
   font-size: 18px;
-
 `;
 
 export const FiXStyle = styled(FiX)`
   cursor: pointer;
   transition: all 0.1s ease;
   font-size: 25px;
+
   &:hover {
     color: #c3c3c3;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 20px;
   }
 `;
 
 export const BsCart4Style = styled(BsCart4)`
   color: #000;
   font-size: 30px;
+
+  @media (max-width: 767px) {
+    font-size: 25px;
+  }
 `;
 
 export const BsWallet2Style = styled(BsWallet2)`
@@ -54,7 +62,6 @@ export const CardCarrinho = styled.div`
   cursor: pointer;
 
   padding: 18px;
-  margin-top: 50px;
 
   width: 100%;
   height: 50px;
@@ -69,10 +76,20 @@ export const ModalStyleCart = styled(ModalStyle)`
   padding: 40px;
   max-height: 80vh;
   overflow-y: auto;
+
+  @media (max-width: 767px) {
+    padding: 20px;
+    max-height: 100vh;
+    width: 95vw;
+  }
 `;
 
 export const ModalTitle = styled.h1`
   font-size: 25px;
+
+  @media (max-width: 767px) {
+    font-size: 22px;
+  }
 `;
 
 export const ModalButton = styled.div`
@@ -140,6 +157,12 @@ export const BotaoFinalizar = styled(Botao)`
 
   &:hover {
     background-color: ${variables.verdeEscuro};
+  }
+
+  @media (max-width: 767px) {
+    font-size: 13px;
+    padding: 8px;
+    gap: 4px;
   }
 `;
 

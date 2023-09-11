@@ -6,28 +6,31 @@ import { ImPlus } from "react-icons/im";
 import Modal from "react-modal";
 import { Botao } from "../../styles";
 
-
 export const DiaSemana = styled.div`
-background-color: #B3365B;
-display: flex;
-align-items: center;
-white-space: nowrap;
-height: 20px;
-color: #fff;
-font-weight: bold;
-border-radius: 8px;
-padding: 8px;
-text-align: center;
-font-size: 10px;
-`
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  display: flex;
+  align-items: center;
+
+  white-space: nowrap;
+  font-weight: bold;
+  padding: 8px;
+  height: 20px;
+
+  background-color: #b3365b;
+  color: #fff;
+  border-radius: 0 5px 0 10px;
+  font-size: 10px;
+`;
 
 export const Preco = styled.div`
-position: absolute;
-bottom: 0;
-right: 0;
-padding: 8px;
-
-`
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 8px;
+`;
 
 export const Card = styled.div`
   margin-top: 16px;
@@ -43,7 +46,6 @@ export const DivInfos = styled.div`
   margin-left: 8px;
 
   p {
-
     font-size: 12px;
     color: ${variables.cinzaEscuro};
   }
@@ -72,6 +74,12 @@ export const ImgCardModal = styled(ImgCard)`
   height: 120px;
   margin-bottom: 20px;
   border: none;
+
+  @media (max-width: 767px) {
+    margin-top: 12px;
+    width: 100%;
+    height: 140px;
+  }
 `;
 
 export const ModalStyle = styled(Modal)`
@@ -117,6 +125,10 @@ export const ModalStyle = styled(Modal)`
     background-color: #fff;
     color: #000;
   }
+
+  @media (max-width: 767px) {
+    width: 80%;
+  }
 `;
 
 export const DivButtons = styled.div`
@@ -137,6 +149,11 @@ export const BotaoAdicionar = styled(Botao)`
 
   div {
     margin-left: 12px;
+  }
+
+  @media (max-width: 767px) {
+    margin-top: 24px;
+    width: 100%;
   }
 `;
 

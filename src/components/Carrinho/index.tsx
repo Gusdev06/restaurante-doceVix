@@ -57,13 +57,16 @@ const Carrinho = () => {
               <span>{item.quantidade}x</span>
               <span>{item.nome}</span>
               <b>R${item.valor * item.quantidade}</b>
-              <S.BotaoDeletarComida type="submit" onClick={() => {
-                dispatch(remover(item.id));
+              <S.BotaoDeletarComida
+                type="submit"
+                onClick={() => {
+                  dispatch(remover(item.id));
 
-                toast.error(`Item removido do carrinho`, {
-                  position: toast.POSITION.BOTTOM_LEFT,
-                });
-              }}>
+                  toast.error(`Item removido do carrinho`, {
+                    position: toast.POSITION.BOTTOM_LEFT,
+                  });
+                }}
+              >
                 <S.BsTrash3Style />
               </S.BotaoDeletarComida>
             </li>
@@ -133,7 +136,7 @@ const Carrinho = () => {
           <S.ModalButtons>
             <S.BotaoContinuarComprando onClick={FecharModal}>
               <S.BsCart2Style />
-              Continuar comprando
+              Continuar compra
             </S.BotaoContinuarComprando>
             <S.BotaoFinalizar>
               <S.BsArrowRightCircleStyle />
