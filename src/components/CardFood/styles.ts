@@ -9,17 +9,27 @@ import { Botao } from "../../styles";
 
 export const DiaSemana = styled.div`
 background-color: #B3365B;
-display: flex;
-align-items: center;
+position: absolute;
+top: 0;
+right: 0;
+padding: 8px;
 white-space: nowrap;
 height: 20px;
-color: #fff;
-font-weight: bold;
-border-radius: 8px;
+display: flex;
+align-items: center;
+justify-content: center;
 padding: 8px;
-text-align: center;
-font-size: 10px;
+border-radius: 0px 5px 0px 10px;
+
+
+span {
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  font-size: 10px;
+}
 `
+
 
 export const Preco = styled.div`
 position: absolute;

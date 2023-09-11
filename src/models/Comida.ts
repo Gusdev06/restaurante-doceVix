@@ -1,27 +1,27 @@
 class Comida {
   id: number;
-  nome: string;
+  item: string;
   descricao: string;
-  valor: GLfloat;
-  imgComida: string;
-  semana?: string;
+  preco: GLfloat;
+  img: string;
+  sem?: string;
   quantidade: number;
 
   constructor(
     id: number,
-    nome: string,
+    item: string,
     descricao: string,
-    valor: GLfloat,
-    imgComida: string,
-    semana: string,
+    preco: GLfloat,
+    img: string,
+    sem: string,
     quantidade: number
   ) {
     this.id = id;
-    this.nome = nome;
+    this.item = item;
     this.descricao = descricao;
-    this.valor = valor;
-    this.imgComida = imgComida;
-    this.semana = semana;
+    this.preco = preco;
+    this.img = img;
+    this.sem = sem;
     this.quantidade = 1
   }
 }

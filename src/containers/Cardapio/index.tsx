@@ -1,26 +1,31 @@
 import CardFood from "../../components/CardFood";
 import Carrinho from "../../components/Carrinho";
+import { useQuery } from "react-query";
+import axios from "axios";
+
 
 import * as M from "@mui/material";
 import * as S from "./styles";
 import * as I from "@mui/icons-material";
 
-import { useEffect, useState } from "react";
+import Comida from "../../models/Comida";
+
+
+const fetchMenuItems = async (type: string) => {
+  const response = await axios.get(`https://apirestaurante.onrender.com/${type}`);
+  return response.data;
+};
 
 const Cardapio = () => {
-  const API = "https://apirestaurante.onrender.com/lanches";
-  const [food, setNome] = useState([]);
 
-  useEffect(() => {
-    async function fetchdata() {
-      const response = await fetch(API);
-      const data = await response.json();
+  const pratos = useQuery<Comida[]>('pratos', () => fetchMenuItems('pratos'));
+  const lanches = useQuery<Comida[]>('lanches', () => fetchMenuItems('lanches'));
+  const beirutes = useQuery<Comida[]>('beirutes', () => fetchMenuItems('beirutes'));
+  const hamburguers = useQuery<Comida[]>('hamburguers', () => fetchMenuItems('hamburguers'));
+  const porcoes = useQuery<Comida[]>('porcoes', () => fetchMenuItems('porcoes'));
+  const bebidas = useQuery<Comida[]>('bebidas', () => fetchMenuItems('bebidas'));
 
-      setNome(data);
-    }
 
-    fetchdata();
-  }, []);
 
   return (
     <>
@@ -34,7 +39,7 @@ const Cardapio = () => {
         <M.AccordionDetails>
           <M.Typography>
             <S.TabPanelFoods>
-              {food.map(
+              {pratos.data?.map(
                 ({ id, item, preco, img, descricao, sem, quantidade }) => {
                   
                   if (sem === "segunda" || sem === null) {
@@ -42,11 +47,11 @@ const Cardapio = () => {
                       <CardFood
                         key={id}
                         id={id}
-                        nome={item}
-                        valor={preco}
+                        item={item}
+                        preco={preco}
                         descricao={descricao}
-                        imgComida={img}
-                        semana={sem ? "Prato do dia" : undefined}
+                        img={img}
+                        sem={sem ? "Prato do dia" : undefined}
                         quantidade={quantidade}
                       />
                     );
@@ -67,20 +72,21 @@ const Cardapio = () => {
         <M.AccordionDetails>
           <M.Typography>
             <S.TabPanelFoods>
-              {food.map(
+            {lanches.data?.map(
                 ({ id, item, preco, img, descricao, sem, quantidade }) => {
-                  if (sem === "terca" || sem === null) {
+                  
+                  if (sem === "segunda" || sem === null) {
                     return (
                       <CardFood
                         key={id}
                         id={id}
-                        nome={item}
-                        valor={preco}
+                        item={item}
+                        preco={preco}
                         descricao={descricao}
-                        imgComida={img}
-                        semana={sem}
+                        img={img}
+                        sem={sem ? "Prato do dia" : undefined}
                         quantidade={quantidade}
-                        />
+                      />
                     );
                   }
                 }
@@ -100,18 +106,19 @@ const Cardapio = () => {
         <M.AccordionDetails>
           <M.Typography>
             <S.TabPanelFoods>
-              {food.map(
+            {beirutes.data?.map(
                 ({ id, item, preco, img, descricao, sem, quantidade }) => {
+                  
                   if (sem === "segunda" || sem === null) {
                     return (
                       <CardFood
                         key={id}
                         id={id}
-                        nome={item}
-                        valor={preco}
+                        item={item}
+                        preco={preco}
                         descricao={descricao}
-                        imgComida={img}
-                        semana={sem}
+                        img={img}
+                        sem={sem ? "Prato do dia" : undefined}
                         quantidade={quantidade}
                       />
                     );
@@ -126,24 +133,25 @@ const Cardapio = () => {
         <M.AccordionSummary expandIcon={<I.ExpandMore />} id="panel1a-header">
           <M.Typography>
             <S.Icon src="https://cdn.discordapp.com/attachments/1101908244559048736/1149044327482413137/xicara-de-cafe.png" />
-            Café da manhã
+            lanches
           </M.Typography>
         </M.AccordionSummary>
         <M.AccordionDetails>
           <M.Typography>
             <S.TabPanelFoods>
-              {food.map(
+            {lanches.data?.map(
                 ({ id, item, preco, img, descricao, sem, quantidade }) => {
+                  
                   if (sem === "segunda" || sem === null) {
                     return (
                       <CardFood
                         key={id}
                         id={id}
-                        nome={item}
-                        valor={preco}
+                        item={item}
+                        preco={preco}
                         descricao={descricao}
-                        imgComida={img}
-                        semana={sem}
+                        img={img}
+                        sem={sem ? "Prato do dia" : undefined}
                         quantidade={quantidade}
                       />
                     );
@@ -164,18 +172,19 @@ const Cardapio = () => {
         <M.AccordionDetails>
           <M.Typography>
             <S.TabPanelFoods>
-              {food.map(
+            {hamburguers.data?.map(
                 ({ id, item, preco, img, descricao, sem, quantidade }) => {
+                  
                   if (sem === "segunda" || sem === null) {
                     return (
                       <CardFood
                         key={id}
                         id={id}
-                        nome={item}
-                        valor={preco}
+                        item={item}
+                        preco={preco}
                         descricao={descricao}
-                        imgComida={img}
-                        semana={sem}
+                        img={img}
+                        sem={sem ? "Prato do dia" : undefined}
                         quantidade={quantidade}
                       />
                     );
@@ -196,18 +205,19 @@ const Cardapio = () => {
         <M.AccordionDetails>
           <M.Typography>
             <S.TabPanelFoods>
-              {food.map(
+            {porcoes.data?.map(
                 ({ id, item, preco, img, descricao, sem, quantidade }) => {
+                  
                   if (sem === "segunda" || sem === null) {
                     return (
                       <CardFood
                         key={id}
                         id={id}
-                        nome={item}
-                        valor={preco}
+                        item={item}
+                        preco={preco}
                         descricao={descricao}
-                        imgComida={img}
-                        semana={sem}
+                        img={img}
+                        sem={sem ? "Prato do dia" : undefined}
                         quantidade={quantidade}
                       />
                     );
@@ -228,18 +238,19 @@ const Cardapio = () => {
         <M.AccordionDetails>
           <M.Typography>
             <S.TabPanelFoods>
-              {food.map(
+            {bebidas.data?.map(
                 ({ id, item, preco, img, descricao, sem, quantidade }) => {
+                  
                   if (sem === "segunda" || sem === null) {
                     return (
                       <CardFood
                         key={id}
                         id={id}
-                        nome={item}
-                        valor={preco}
+                        item={item}
+                        preco={preco}
                         descricao={descricao}
-                        imgComida={img}
-                        semana={sem}
+                        img={img}
+                        sem={sem ? "Prato do dia" : undefined}
                         quantidade={quantidade}
                       />
                     );
