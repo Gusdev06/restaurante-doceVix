@@ -5,6 +5,7 @@ export const TabPanelFoods = styled.div`
   display: grid;
   gap: 22px;
   grid-template-columns: repeat(3, 1fr);
+  margin-top: 0;
   
     @media (max-width: 768px) {
      grid-template-columns : 1fr;
@@ -18,7 +19,11 @@ export const TypographyStyle = styled(Typography)`
   align-items: center;
 `
 
+
+
 export const Icon = styled.img`
   width: 24px;
   margin-right: 12px;
+
+  
 `;

@@ -6,6 +6,29 @@ import { ImPlus } from "react-icons/im";
 import Modal from "react-modal";
 import { Botao } from "../../styles";
 
+
+export const DiaSemana = styled.div`
+background-color: #B3365B;
+display: flex;
+align-items: center;
+white-space: nowrap;
+height: 20px;
+color: #fff;
+font-weight: bold;
+border-radius: 8px;
+padding: 8px;
+text-align: center;
+font-size: 10px;
+`
+
+export const Preco = styled.div`
+position: absolute;
+bottom: 0;
+right: 0;
+padding: 8px;
+
+`
+
 export const Card = styled.div`
   margin-top: 16px;
   display: flex;
@@ -13,13 +36,14 @@ export const Card = styled.div`
   border-radius: 7px;
   border: 1px solid #cacaca;
   cursor: pointer;
+  position: relative;
 `;
 
 export const DivInfos = styled.div`
   margin-left: 8px;
 
   p {
-    margin-bottom: 24px;
+
     font-size: 12px;
     color: ${variables.cinzaEscuro};
   }

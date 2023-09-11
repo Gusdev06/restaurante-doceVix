@@ -24,7 +24,7 @@ const Cardapio = () => {
 
   return (
     <>
-      <M.Accordion>
+      <M.Accordion defaultExpanded={true}>
         <M.AccordionSummary expandIcon={<I.ExpandMore />} id="panel1a-header">
           <M.Typography>
             <S.Icon src="https://cdn.discordapp.com/attachments/1101908244559048736/1149044327713095740/bandeja-de-comida.png" />
@@ -36,6 +36,7 @@ const Cardapio = () => {
             <S.TabPanelFoods>
               {food.map(
                 ({ id, item, preco, img, descricao, sem, quantidade }) => {
+                  
                   if (sem === "segunda" || sem === null) {
                     return (
                       <CardFood
@@ -45,7 +46,7 @@ const Cardapio = () => {
                         valor={preco}
                         descricao={descricao}
                         imgComida={img}
-                        semana={sem}
+                        semana={sem ? "Prato do dia" : undefined}
                         quantidade={quantidade}
                       />
                     );
@@ -68,7 +69,7 @@ const Cardapio = () => {
             <S.TabPanelFoods>
               {food.map(
                 ({ id, item, preco, img, descricao, sem, quantidade }) => {
-                  if (sem === "segunda" || sem === null) {
+                  if (sem === "terca" || sem === null) {
                     return (
                       <CardFood
                         key={id}
@@ -79,11 +80,12 @@ const Cardapio = () => {
                         imgComida={img}
                         semana={sem}
                         quantidade={quantidade}
-                      />
+                        />
                     );
                   }
                 }
               )}
+            
             </S.TabPanelFoods>
           </M.Typography>
         </M.AccordionDetails>

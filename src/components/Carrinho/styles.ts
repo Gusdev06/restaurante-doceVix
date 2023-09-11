@@ -22,6 +22,7 @@ export const BsArrowRightCircleStyle = styled(BsArrowRightCircle)`
 export const BsTrash3Style = styled(BsTrash3)`
   color: ${variables.vermelho};
   font-size: 18px;
+
 `;
 
 export const FiXStyle = styled(FiX)`
@@ -85,8 +86,10 @@ export const ModalButton = styled.div`
 
 export const ModalItens = styled.ul`
   li {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr 1fr; /* Crie quatro colunas para quantidade, item, preço e ícone da lixeira */
+    gap: 16px; /* Espaço entre as colunas */
+    align-items: center; /* Alinhe verticalmente os elementos */
     padding: 5px;
     margin-bottom: 24px;
     border-bottom: 1px solid #e1e1e1;
@@ -151,4 +154,5 @@ export const BotaoContinuarComprando = styled(BotaoFinalizar)`
 export const BotaoDeletarComida = styled.button`
   cursor: pointer;
   border: none;
+  background: none;
 `;

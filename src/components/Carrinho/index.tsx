@@ -1,5 +1,6 @@
-import Modal from "react-modal";
 import * as S from "./styles";
+import Modal from "react-modal";
+import { toast } from "react-toastify";
 import Comida from "../../models/Comida";
 import { useState } from "react";
 import { RootReducer } from "../../store";
@@ -56,10 +57,13 @@ const Carrinho = () => {
               <span>{item.quantidade}x</span>
               <span>{item.nome}</span>
               <b>R${item.valor * item.quantidade}</b>
-              <S.BotaoDeletarComida
-                onClick={() => dispatch(remover(item.id))}
-                type="submit"
-              >
+              <S.BotaoDeletarComida type="submit" onClick={() => {
+                dispatch(remover(item.id));
+
+                toast.error(`Item removido do carrinho`, {
+                  position: toast.POSITION.BOTTOM_LEFT,
+                });
+              }}>
                 <S.BsTrash3Style />
               </S.BotaoDeletarComida>
             </li>

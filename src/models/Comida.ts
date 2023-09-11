@@ -4,7 +4,7 @@ class Comida {
   descricao: string;
   valor: GLfloat;
   imgComida: string;
-  semana: string;
+  semana?: string;
   quantidade: number;
 
   constructor(

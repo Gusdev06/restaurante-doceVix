@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import variables from "../../styles/variables";
 
+
+
 export const Header = styled.header`
   background: url("https://servidor-estaticos-topaz-eight.vercel.app/Background.png");
   height: 140px;
@@ -11,6 +13,7 @@ export const DivLogo = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: red;
 `;
 
 export const Logo = styled.div`
@@ -22,6 +25,7 @@ export const Logo = styled.div`
   height: 200px;
   position: absolute;
 
+
   transition: all 0.4s ease;
 
   &:hover {
@@ -32,7 +36,8 @@ export const Logo = styled.div`
 export const DivTitulo = styled.div`
   text-align: center;
   padding-top: 88px;
-  margin-bottom: 32px;
+  padding-bottom: 32px;
+  background-color: #fff;
   h1 {
     font-family: "Anton", sans-serif;
     color: ${variables.corPrincipal};
@@ -53,7 +58,7 @@ export const StatusRestaurante = styled.span`
   justify-content: center;
 
   position: absolute;
-  right: 0;
+  right: 18%;
   margin-top: 52px;
   margin-right: 12px;
 
