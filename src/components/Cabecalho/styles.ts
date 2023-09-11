@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import variables from "../../styles/variables";
 
-
-
 export const Header = styled.header`
   background: url("https://servidor-estaticos-topaz-eight.vercel.app/Background.png");
   height: 140px;
@@ -13,7 +11,6 @@ export const DivLogo = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: red;
 `;
 
 export const Logo = styled.div`
@@ -25,11 +22,14 @@ export const Logo = styled.div`
   height: 200px;
   position: absolute;
 
-
   transition: all 0.4s ease;
 
   &:hover {
     transform: scale(1.05);
+  }
+
+  @media (max-width: 414px) {
+    margin-bottom: 32px;
   }
 `;
 
@@ -41,6 +41,10 @@ export const DivTitulo = styled.div`
   h1 {
     font-family: "Anton", sans-serif;
     color: ${variables.corPrincipal};
+
+    @media (max-width: 767px) {
+      font-size: 28px;
+    }
   }
 
   span {
@@ -49,6 +53,10 @@ export const DivTitulo = styled.div`
 
   p {
     font-size: 17px;
+
+    @media (max-width: 414px) {
+      font-size: 16px;
+    }
   }
 `;
 
@@ -58,8 +66,8 @@ export const StatusRestaurante = styled.span`
   justify-content: center;
 
   position: absolute;
-  right: 18%;
-  margin-top: 52px;
+  right: 0;
+  margin-top: 12px;
   margin-right: 12px;
 
   width: 101px;
@@ -70,8 +78,25 @@ export const StatusRestaurante = styled.span`
   font-weight: bold;
   font-size: 14px;
   border-radius: 30px;
+
+  @media (max-width: 414px) {
+    width: 65px;
+    font-size: 12px;
+    margin-right: 6px;
+    margin-top: 6px;
+  }
 `;
 
 export const StatusRestauranteFechado = styled(StatusRestaurante)`
   background-color: ${variables.vermelho};
+`;
+
+export const Content = styled.div`
+  position: relative;
+`;
+
+export const InfosList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 `;

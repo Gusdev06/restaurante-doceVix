@@ -14,7 +14,7 @@ const Carrinho = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
 
   const valorTotal = itens.reduce((acc: number, item: Comida) => {
-    acc += item.preco * item.quantidade;
+    acc += item.valor * item.quantidade;
 
     return acc;
   }, 0);
@@ -55,15 +55,18 @@ const Carrinho = () => {
           {itens.map((item) => (
             <li key={item.id}>
               <span>{item.quantidade}x</span>
-              <span>{item.item}</span>
-              <b>R${item.preco * item.quantidade}</b>
-              <S.BotaoDeletarComida type="submit" onClick={() => {
-                dispatch(remover(item.id));
+              <span>{item.nome}</span>
+              <b>R${item.valor * item.quantidade}</b>
+              <S.BotaoDeletarComida
+                type="submit"
+                onClick={() => {
+                  dispatch(remover(item.id));
 
-                toast.error(`Item removido do carrinho`, {
-                  position: toast.POSITION.BOTTOM_LEFT,
-                });
-              }}>
+                  toast.error(`Item removido do carrinho`, {
+                    position: toast.POSITION.BOTTOM_LEFT,
+                  });
+                }}
+              >
                 <S.BsTrash3Style />
               </S.BotaoDeletarComida>
             </li>
@@ -133,7 +136,7 @@ const Carrinho = () => {
           <S.ModalButtons>
             <S.BotaoContinuarComprando onClick={FecharModal}>
               <S.BsCart2Style />
-              Continuar comprando
+              Continuar compra
             </S.BotaoContinuarComprando>
             <S.BotaoFinalizar>
               <S.BsArrowRightCircleStyle />

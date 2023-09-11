@@ -10,7 +10,7 @@ Modal.setAppElement("#root");
 
 export type Props = Comida;
 
-const CardFood = ({ item, descricao, preco, img, sem, id }: Props) => {
+const CardFood = ({ nome, descricao, valor, imgComida, semana, id }: Props) => {
   const dispatch = useDispatch();
   const [modalIsOpen, setIsOpen] = useState(false);
 
@@ -25,23 +25,22 @@ const CardFood = ({ item, descricao, preco, img, sem, id }: Props) => {
   return (
     <>
       <S.Card onClick={AbrirModal}>
-        <S.ImgCard src={img} />
+        <S.ImgCard src={imgComida} />
         <S.DivInfos>
-          <label htmlFor={item}>{item}</label> <br/>
+          <label htmlFor={nome}>{nome}</label> <br />
           <p>{descricao}</p>
           <S.Preco>
-            <span>R${preco.toFixed(2)}</span>
+            <span>R${valor.toFixed(2)}</span>
           </S.Preco>
         </S.DivInfos>
 
-        {sem ?
-        <>
-        <S.DiaSemana>
-        <span>{sem}</span> 
-        </S.DiaSemana>
-        </>
-        : null}
-        
+        {semana ? (
+          <>
+            <S.DiaSemana>
+              <span>{semana}</span>
+            </S.DiaSemana>
+          </>
+        ) : null}
       </S.Card>
       <S.ModalStyle isOpen={modalIsOpen} onRequestClose={FecharModal}>
         <div>
@@ -50,10 +49,10 @@ const CardFood = ({ item, descricao, preco, img, sem, id }: Props) => {
             <S.FiXStyle onClick={FecharModal} />
           </div>
           <div style={{ textAlign: "center" }}>
-            <S.ImgCardModal src={img} />
+            <S.ImgCardModal src={imgComida} />
           </div>
         </div>
-        <h2>{item}</h2>
+        <h2>{nome}</h2>
         <p>{descricao}</p>
         <textarea placeholder="Observações (opcional)" />
         <S.DivButtons>
@@ -62,11 +61,11 @@ const CardFood = ({ item, descricao, preco, img, sem, id }: Props) => {
             onClick={() => {
               dispatch(
                 adicionar({
-                  item,
+                  nome,
                   descricao,
-                  img,
-                  sem,
-                  preco,
+                  imgComida,
+                  semana,
+                  valor,
                   id,
                   quantidade: 1,
                 })
@@ -78,7 +77,7 @@ const CardFood = ({ item, descricao, preco, img, sem, id }: Props) => {
           >
             <S.ImPlusStyle />
             Adicionar
-            <div>R${preco.toFixed(2)}</div>
+            <div>R${valor.toFixed(2)}</div>
           </S.BotaoAdicionar>
         </S.DivButtons>
       </S.ModalStyle>
