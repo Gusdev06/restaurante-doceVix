@@ -133,9 +133,10 @@ const Cardapio = () => {
         <M.AccordionSummary expandIcon={<I.ExpandMore />} id="panel1a-header">
           <M.Typography>
             <S.Icon src="https://cdn.discordapp.com/attachments/1101908244559048736/1149044327482413137/xicara-de-cafe.png" />
-            lanches
+            lanche
           </M.Typography>
         </M.AccordionSummary>
+        
         <M.AccordionDetails>
           <M.Typography>
             <S.TabPanelFoods>
