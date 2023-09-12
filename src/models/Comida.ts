@@ -6,6 +6,7 @@ class Comida {
   img: string;
   sem?: string;
   quantidade: number;
+  observacao?: string | undefined;
 
   constructor(
     id: number,
@@ -14,7 +15,7 @@ class Comida {
     preco: GLfloat,
     img: string,
     sem: string,
-    quantidade: number
+    observacao: string | undefined
   ) {
     this.id = id;
     this.item = item;
@@ -22,8 +23,9 @@ class Comida {
     this.preco = preco;
     this.img = img;
     this.sem = sem;
-    this.quantidade = 1
+    this.quantidade = 1;
+    this.observacao = observacao;
   }
 }
 
-export default Comida
+export default Comida;

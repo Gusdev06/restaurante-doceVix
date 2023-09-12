@@ -55,7 +55,7 @@ const Carrinho = () => {
           {itens.map((item) => (
             <li key={item.id}>
               <span>{item.quantidade}x</span>
-              <span>{item.item}</span>
+              <span>{item.item} <strong>{item.observacao ? `(${item.observacao})` : ''}</strong></span>
               <b>R${item.preco * item.quantidade}</b>
               <S.BotaoDeletarComida
                 type="submit"

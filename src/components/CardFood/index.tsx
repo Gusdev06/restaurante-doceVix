@@ -12,7 +12,8 @@ export type Props = Comida;
 
 const CardFood = ({ item, descricao, preco, img, sem, id }: Props) => {
   const dispatch = useDispatch();
-  const [modalIsOpen, setIsOpen] = useState(false);
+  const [observacao, setObservacao] = useState('')
+  const [modalIsOpen, setIsOpen] = useState(false)
 
   const AbrirModal = () => {
     setIsOpen(true);
@@ -54,7 +55,7 @@ const CardFood = ({ item, descricao, preco, img, sem, id }: Props) => {
         </div>
         <h2>{item}</h2>
         <p>{descricao}</p>
-        <textarea placeholder="Observações (opcional)" />
+        <textarea value={observacao} onChange={(e) => setObservacao(e.target.value)} placeholder="Observações (opcional)" />
         <S.DivButtons>
           <S.BotaoAdicionar
             type="button"
@@ -68,11 +69,13 @@ const CardFood = ({ item, descricao, preco, img, sem, id }: Props) => {
                   preco,
                   id,
                   quantidade: 1,
+                  observacao,
                 })
               );
               toast.success(`Item adicionado ao carrinho :D`, {
                 position: toast.POSITION.BOTTOM_LEFT,
               });
+              setObservacao('')
             }}
           >
             <S.ImPlusStyle />

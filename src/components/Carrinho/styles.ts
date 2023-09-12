@@ -101,8 +101,6 @@ export const ModalButton = styled.div`
   border: 1px solid #e1e1e1;
 `;
 
-console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-
 export const ModalItens = styled.ul`
   li {
     display: grid;
