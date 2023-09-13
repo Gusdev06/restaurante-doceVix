@@ -114,18 +114,6 @@ export const ModalStyle = styled(Modal)`
     font-weight: bold;
   }
 
-  input {
-    display: block;
-    padding: 6px;
-    font-size: 16px;
-    max-width: 132px;
-
-    border-radius: 8px;
-    border: 1px solid #c3c3c3;
-    background-color: #fff;
-    color: #000;
-  }
-
   @media (max-width: 767px) {
     width: 80%;
   }

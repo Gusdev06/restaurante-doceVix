@@ -136,7 +136,7 @@ const Cardapio = () => {
         <M.AccordionSummary expandIcon={<I.ExpandMore />} id="panel1a-header">
           <M.Typography>
             <S.Icon src="https://cdn.discordapp.com/attachments/1101908244559048736/1149044327482413137/xicara-de-cafe.png" />
-            lanche
+            Café da manhã
           </M.Typography>
         </M.AccordionSummary>
 
@@ -264,7 +264,7 @@ const Cardapio = () => {
       <M.Accordion style={{ marginBottom: "92px" }}>
         <M.AccordionSummary expandIcon={<I.ExpandMore />} id="panel1a-header">
           <M.Typography>
-            <S.Icon src="https://cdn.discordapp.com/attachments/1101908244559048736/1149044328774242314/refrigerante.png" />
+            <S.Icon src="https://cdn.discordapp.com/attachments/1148673197902925917/1151528367678570496/sobremesa.png" />
             Sobremesas
           </M.Typography>
         </M.AccordionSummary>

@@ -9,10 +9,22 @@ import {
   BsArrowRightCircle,
 } from "react-icons/bs";
 import { FiX } from "react-icons/fi";
+import { MdDeliveryDining } from "react-icons/md";
+import { GoCheckCircleFill } from "react-icons/go";
+import { AiOutlineUser } from "react-icons/ai";
 import { Botao } from "../../styles";
+
+type BotaoState = {
+  disabled?: boolean;
+};
 
 export const BsCart2Style = styled(BsCart2)`
   color: #fff;
+`;
+
+export const FiCheckCircleStyle = styled(GoCheckCircleFill)`
+  color: ${variables.verdeClaro};
+  font-size: 26px;
 `;
 
 export const BsArrowRightCircleStyle = styled(BsArrowRightCircle)`
@@ -49,6 +61,16 @@ export const BsCart4Style = styled(BsCart4)`
 
 export const BsWallet2Style = styled(BsWallet2)`
   color: #000;
+`;
+
+export const MdDeliveryDiningStyle = styled(MdDeliveryDining)`
+  color: #000;
+  font-size: 24px;
+`;
+
+export const AiOutlineUserStyle = styled(AiOutlineUser)`
+  color: #000;
+  font-size: 20px;
 `;
 
 export const CardCarrinho = styled.div`
@@ -132,6 +154,25 @@ export const ModalLabel = styled.label`
 
 export const ModalForm = styled.form`
   margin-top: 14px;
+
+  div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  input {
+    padding: 4px;
+    margin-bottom: 6px;
+    border-radius: 5px;
+    border: none;
+    border-bottom: 1px solid #000;
+    font-weight: bold;
+
+    &:focus {
+      box-shadow: 0 0 0 0;
+      outline: 0;
+    }
+  }
 `;
 
 export const ModalPrice = styled.div`
@@ -149,14 +190,16 @@ export const ModalButtons = styled.div`
   grid-template-columns: repeat(2, 1fr);
 `;
 
-export const BotaoFinalizar = styled(Botao)`
+export const BotaoFinalizar = styled(Botao)<BotaoState>`
   gap: 6px;
   margin-top: 14px;
   font-size: 15px;
-  background-color: ${variables.corBotoesAceitar};
+  background-color: ${(props: BotaoState) =>
+    props.disabled ? "#c3c3c3" : variables.corBotoesAceitar};
 
   &:hover {
-    background-color: ${variables.verdeEscuro};
+    background-color: ${(props: BotaoState) =>
+      props.disabled ? "#c3c3c3" : variables.verdeEscuro};
   }
 
   @media (max-width: 767px) {
@@ -178,4 +221,21 @@ export const BotaoDeletarComida = styled.button`
   cursor: pointer;
   border: none;
   background: none;
+`;
+
+export const ModalFinalizarPedido = styled(ModalStyle)`
+  text-align: center;
+  p {
+    margin-top: 24px;
+
+    @media (max-width: 414px) {
+      font-size: 14px;
+    }
+  }
+`;
+
+export const ContainerContinuarParaSite = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
