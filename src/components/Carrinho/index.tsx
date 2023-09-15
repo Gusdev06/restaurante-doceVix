@@ -6,9 +6,39 @@ import { ChangeEvent, useState } from "react";
 import { RootReducer } from "../../store";
 import { useDispatch, useSelector } from "react-redux";
 import { remover } from "../../store/reducers/carrinho";
+import { useForm } from "react-hook-form"
+import { yupResolver } from "@hookform/resolvers/yup"
+import { object, string } from "yup"
+
+
 Modal.setAppElement("#root");
 
+
+
+
+
 const Carrinho = () => {
+
+  const schema = object({
+    name: string().required("*Campo obrigatório").min(2, "Seu nome precisa ter mais de 3 carecteres"),
+    telefone: string().required("*Campo obrigatório").min(1, "Numero incorreto")
+  })
+
+
+  const { register, handleSubmit: onSubmit,  formState: { errors }, watch} = useForm({resolver: yupResolver(schema)})
+
+  const nome = watch('name')
+  const telefone = watch('telefone')
+  
+  const handleSubmit = (data: any) => {
+    console.log(data)
+
+    
+  }
+
+
+
+
   const dispatch = useDispatch();
   const itens = useSelector((state: RootReducer) => state.carrinho.itens);
 
@@ -16,6 +46,7 @@ const Carrinho = () => {
   const [childModalIsOpen, setChildModalIsOpen] = useState(false);
   const [opcaoPagamento, setOpcaoPagamento] = useState("pix");
   const [opcaoEntrega, setOpcaoEntrega] = useState("retirada");
+
 
   const valorTotal = itens.reduce((acc: number, item: Comida) => {
     acc += item.preco * item.quantidade;
@@ -48,8 +79,9 @@ const Carrinho = () => {
     setChildModalIsOpen(false);
   };
 
+  
   return (
-    <>
+    <form>
       <S.CardCarrinho onClick={openModal}>
         <span>Meu carrinho ({itens.length})</span>
         <span>R${valorTotal.toFixed(2)}</span>
@@ -111,6 +143,7 @@ const Carrinho = () => {
             <S.ModalTittlePay>Forma de pagamento</S.ModalTittlePay>
             <span></span>
           </div>
+          
           <S.ModalForm>
             <S.ModalLabel>
               <input
@@ -198,12 +231,14 @@ const Carrinho = () => {
             <S.ModalTittlePay>Dados do cliente</S.ModalTittlePay>
             <span></span>
           </div>
-          <S.ModalForm>
+          <S.ModalForm onSubmit={onSubmit(handleSubmit)}>
             <div>
               <label htmlFor="name">Nome:</label>
-              <input type="text" id="name" />
-              <label htmlFor="tel">Telefone:</label>
-              <input type="tel" id="tel" />
+              <input type="text" {...register("name")}/>
+              <S.Errors>{errors?.name?.message}</S.Errors>
+              <label htmlFor="telefone">Telefone:</label>
+              <input type="tel" id="telefone" {...register("telefone")} />
+              <S.Errors>{errors?.telefone?.message}</S.Errors>
             </div>
             {opcaoEntrega === "delivery" && (
               <div>
@@ -211,29 +246,37 @@ const Carrinho = () => {
                 <input type="text" id="address" />
               </div>
             )}
-          </S.ModalForm>
-          <S.ModalPrice>
+
+            <S.ModalPrice>
             <span>TOTAL</span>
             <span>R${valorTotal.toFixed(2)}</span>
           </S.ModalPrice>
+
           <S.ModalButtons>
             <S.BotaoContinuarComprando onClick={closeModal}>
               <S.BsCart2Style />
               Continuar compra
             </S.BotaoContinuarComprando>
-            {itens.length === 0 ? (
-              <S.BotaoFinalizar disabled onClick={openChildModal}>
+            {itens.length === 0  ||
+            nome === "" ||
+            telefone === ""
+            ?(
+              <S.BotaoFinalizarIndisponivel onClick={() => errors?.name?.message}>
                 <S.BsArrowRightCircleStyle />
                 Finalizar compra
-              </S.BotaoFinalizar>
-            ) : (
-              <S.BotaoFinalizar onClick={openChildModal}>
+              </S.BotaoFinalizarIndisponivel>
+            
+            ): (
+              <S.BotaoFinalizar onClick={openChildModal} >
                 <S.BsArrowRightCircleStyle />
                 Finalizar compra
               </S.BotaoFinalizar>
             )}
+            
           </S.ModalButtons>
+          </S.ModalForm> 
         </S.ModalPayment>
+        
       </S.ModalStyleCart>
       <S.ModalFinalizarPedido
         isOpen={childModalIsOpen}
@@ -251,7 +294,7 @@ const Carrinho = () => {
           </S.BotaoFinalizar>
         </S.ContainerContinuarParaSite>
       </S.ModalFinalizarPedido>
-    </>
+    </form>
   );
 };
 

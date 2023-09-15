@@ -1,6 +1,15 @@
 import styled from "styled-components";
 import variables from "../../styles/variables";
 
+
+
+
+export const info = styled.div `
+display: flex;
+align-items: center;
+gap: 4px;
+`
+
 export const Header = styled.header`
   background: url("https://servidor-estaticos-topaz-eight.vercel.app/Background.png");
   height: 140px;
@@ -99,4 +108,12 @@ export const InfosList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 12px;
+  
+
+  li {
+    a {
+      color: #000;
+      text-decoration: none;  
+    }
+  }
 `;

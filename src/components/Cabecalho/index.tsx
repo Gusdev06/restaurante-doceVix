@@ -1,6 +1,8 @@
 import * as S from "./styles";
 import * as M from "@mui/material";
 import * as I from "@mui/icons-material";
+import { BiInfoCircle, BiPhone, BiLogoWhatsapp, BiTime  } from "react-icons/bi"
+import { MdLocationOn } from "react-icons/md"
 
 const Cabecalho = () => {
   return (
@@ -16,25 +18,53 @@ const Cabecalho = () => {
         </h1>
         <p>Restaurante e lanchonete de comida brasileira. Bom almoço!!!</p>
       </S.DivTitulo>
-      <M.Accordion>
+      <M.Accordion defaultExpanded={true}>
         <M.AccordionSummary expandIcon={<I.ExpandMore />}>
-          <M.Typography><strong>Informações do restaurante</strong></M.Typography>
+        
+          <M.Typography>
+            <S.info>
+              <BiInfoCircle/>
+              <strong>
+                Informações do restaurante
+              </strong>
+              </S.info>
+          </M.Typography>
+
         </M.AccordionSummary>
         <M.AccordionDetails>
+
           <M.Typography>
             <S.InfosList>
               <li>
-                <strong>Endereço:</strong> R. José de Magalhães, 256 - Vila
+              <S.info>
+              <MdLocationOn/>
+              <a target="_blank" href="https://www.google.com/maps/dir//-20.515003,-54.639775/@-20.5148702,-54.7221258,12z?entry=ttu">
+              <strong>
+
+                Endereço
+              </strong>
+              : R. José de Magalhães, 256 - Vila
                 Clementino, São Paulo - SP, 04026-090
+                </a>
+              </S.info>
               </li>
               <li>
+              <S.info>
+              <BiTime/>
                 <strong>Horário:</strong> Segunda a Sexta das 07:00 às 15:00 | Fechado aos finais de semana
+              </S.info>
               </li>
               <li>
-                <strong>Telefone:</strong> (11) 5082-5179
+              <S.info>
+              <BiPhone/>
+              <a target="_blank" href="tel:50825179"> <strong>Telefone:</strong> (11) 5082-5179</a> 
+              </S.info>
               </li>
               <li>
-                <strong>WhatsApp:</strong> (11) 976728089
+              <S.info>
+              <BiLogoWhatsapp/>
+              <a target="_blank" href="https://api.whatsapp.com/send?phone=976728089"> <strong>WhatsApp:</strong>   (11) 976728089</a>
+              </S.info>
               </li>
             </S.InfosList>
           </M.Typography>
