@@ -14,9 +14,8 @@ import { GoCheckCircleFill } from "react-icons/go";
 import { AiOutlineUser } from "react-icons/ai";
 import { Botao } from "../../styles";
 
-type BotaoState = {
-  disabled?: boolean;
-};
+
+
 
 export const BsCart2Style = styled(BsCart2)`
   color: #fff;
@@ -190,16 +189,14 @@ export const ModalButtons = styled.div`
   grid-template-columns: repeat(2, 1fr);
 `;
 
-export const BotaoFinalizar = styled(Botao)<BotaoState>`
+export const BotaoFinalizar = styled(Botao)`
   gap: 6px;
   margin-top: 14px;
   font-size: 15px;
-  background-color: ${(props: BotaoState) =>
-    props.disabled ? "#c3c3c3" : variables.corBotoesAceitar};
+  background-color: ${variables.corBotoesAceitar};
 
   &:hover {
-    background-color: ${(props: BotaoState) =>
-      props.disabled ? "#c3c3c3" : variables.verdeEscuro};
+    background-color: ${variables.verdeEscuro};
   }
 
   @media (max-width: 767px) {
@@ -208,6 +205,15 @@ export const BotaoFinalizar = styled(Botao)<BotaoState>`
     gap: 4px;
   }
 `;
+
+
+export const BotaoFinalizarIndisponivel = styled(BotaoFinalizar) `
+background-color: #c3c3c3;
+
+&:hover {
+    background-color: ${variables.cinzaEscuro};
+  }
+`
 
 export const BotaoContinuarComprando = styled(BotaoFinalizar)`
   background-color: ${variables.cinza};
@@ -239,3 +245,10 @@ export const ContainerContinuarParaSite = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
+export const Errors = styled.span`
+color: red;
+font-weight: bold;
+padding-bottom: 10px;
+
+`
