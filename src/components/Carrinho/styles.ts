@@ -14,9 +14,6 @@ import { GoCheckCircleFill } from "react-icons/go";
 import { AiOutlineUser } from "react-icons/ai";
 import { Botao } from "../../styles";
 
-
-
-
 export const BsCart2Style = styled(BsCart2)`
   color: #fff;
 `;
@@ -206,14 +203,13 @@ export const BotaoFinalizar = styled(Botao)`
   }
 `;
 
+export const BotaoFinalizarIndisponivel = styled(BotaoFinalizar)`
+  background-color: #c3c3c3;
 
-export const BotaoFinalizarIndisponivel = styled(BotaoFinalizar) `
-background-color: #c3c3c3;
-
-&:hover {
+  &:hover {
     background-color: ${variables.cinzaEscuro};
   }
-`
+`;
 
 export const BotaoContinuarComprando = styled(BotaoFinalizar)`
   background-color: ${variables.cinza};
@@ -247,8 +243,7 @@ export const ContainerContinuarParaSite = styled.div`
 `;
 
 export const Errors = styled.span`
-color: red;
-font-weight: bold;
-padding-bottom: 10px;
-
-`
+  color: red;
+  font-weight: bold;
+  padding-bottom: 10px;
+`;

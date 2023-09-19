@@ -21,7 +21,7 @@ const carrinhoSlice = createSlice({
       const comidaExistente = state.itens.find(
         (comida) => comida.id === novaComida.id
       );
-      if (comidaExistente) {
+      if (comidaExistente && comidaExistente.observacao === novaComida.observacao) {
         comidaExistente.quantidade += 1;
       } else {
         state.itens.push(novaComida);
