@@ -111,6 +111,7 @@ const Carrinho = () => {
   const mensagemCarrinho = construirMensagemCarrinho(itens);
 
   // Crie o link do WhatsApp com a mensagem
+  // S2 Gpeto
   const linkWhatsApp = `https://api.whatsapp.com/send?phone=11943735978&text=${mensagemCarrinho}`;
 
   return (
