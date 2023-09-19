@@ -1,6 +1,8 @@
 import { Typography } from "@mui/material";
 import styled from "styled-components";
 
+console.log('oi')
+
 export const TabPanelFoods = styled.div`
   display: grid;
   gap: 8px;

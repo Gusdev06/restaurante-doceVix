@@ -16,6 +16,7 @@ const fetchMenuItems = async (type: string) => {
   return response.data;
 };
 
+
 const Cardapio = () => {
   const pratos = useQuery<Comida[]>("pratos", () => fetchMenuItems("pratos"));
   const lanches = useQuery<Comida[]>("lanches", () =>
