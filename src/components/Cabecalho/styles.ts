@@ -7,11 +7,11 @@ export const info = styled.div`
   gap: 4px;
 `;
 
-export const Header = styled.header`
-  background: url("https://servidor-estaticos-topaz-eight.vercel.app/Background.png");
-  height: 140px;
-  position: relative;
-`;
+// export const Header = styled.header`
+//   background: url("https://servidor-estaticos-topaz-eight.vercel.app/Background.png");
+//   height: 140px;
+//   position: relative;
+// `;
 
 export const DivLogo = styled.div`
   display: flex;

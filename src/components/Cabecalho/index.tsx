@@ -1,6 +1,7 @@
 import * as S from "./styles";
 import * as M from "@mui/material";
 import * as I from "@mui/icons-material";
+import Login from "../Login";
 import { BiInfoCircle, BiPhone, BiLogoWhatsapp, BiTime } from "react-icons/bi";
 import { MdLocationOn } from "react-icons/md";
 
@@ -18,6 +19,7 @@ const Cabecalho = () => {
         </h1>
         <p>Restaurante e lanchonete de comida brasileira. Bom almoço!!!</p>
       </S.DivTitulo>
+      <Login />
       <M.Accordion defaultExpanded={true}>
         <M.AccordionSummary expandIcon={<I.ExpandMore />}>
           <M.Typography>
