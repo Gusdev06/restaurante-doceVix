@@ -6,38 +6,35 @@ import { ChangeEvent, useState } from "react";
 import { RootReducer } from "../../store";
 import { useDispatch, useSelector } from "react-redux";
 import { remover } from "../../store/reducers/carrinho";
-import { useForm } from "react-hook-form"
-import { yupResolver } from "@hookform/resolvers/yup"
-import { object, string } from "yup"
-
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { object, string } from "yup";
 
 Modal.setAppElement("#root");
 
-
-
-
-
 const Carrinho = () => {
-
   const schema = object({
-    name: string().required("*Campo obrigatório").min(2, "Seu nome precisa ter mais de 3 carecteres"),
-    telefone: string().required("*Campo obrigatório").min(1, "Numero incorreto")
-  })
+    name: string()
+      .required("*Campo obrigatório")
+      .min(2, "Seu nome precisa ter mais de 3 carecteres"),
+    telefone: string()
+      .required("*Campo obrigatório")
+      .min(1, "Numero incorreto"),
+  });
 
+  const {
+    register,
+    handleSubmit: onSubmit,
+    formState: { errors },
+    watch,
+  } = useForm({ resolver: yupResolver(schema) });
 
-  const { register, handleSubmit: onSubmit,  formState: { errors }, watch} = useForm({resolver: yupResolver(schema)})
+  const nome = watch("name");
+  const telefone = watch("telefone");
 
-  const nome = watch('name')
-  const telefone = watch('telefone')
-  
   const handleSubmit = (data: any) => {
-    console.log(data)
-
-    
-  }
-
-
-
+    console.log(data);
+  };
 
   const dispatch = useDispatch();
   const itens = useSelector((state: RootReducer) => state.carrinho.itens);
@@ -46,7 +43,6 @@ const Carrinho = () => {
   const [childModalIsOpen, setChildModalIsOpen] = useState(false);
   const [opcaoPagamento, setOpcaoPagamento] = useState("pix");
   const [opcaoEntrega, setOpcaoEntrega] = useState("retirada");
-
 
   const valorTotal = itens.reduce((acc: number, item: Comida) => {
     acc += item.preco * item.quantidade;
@@ -79,7 +75,44 @@ const Carrinho = () => {
     setChildModalIsOpen(false);
   };
 
-  
+  // Função para construir a mensagem com base nos itens do carrinho
+  function construirMensagemCarrinho(itens: Comida[]) {
+    let mensagem = "Olá, gostaria de fazer um pedido:\n\n";
+
+    for (const item of itens) {
+      mensagem += `${item.quantidade}x, ${item.item}`;
+      if (item.observacao) {
+        mensagem += ` (${item.observacao})`;
+      }
+      mensagem += `, R$ ${item.preco * item.quantidade}\n`;
+    }
+
+    mensagem += "\n------------\n";
+    mensagem += "*Em nome de:* Seu Nome\n";
+    mensagem += "Seu Telefone\n";
+    mensagem += "------------\n";
+    mensagem += "Retirada no balcão\n";
+    mensagem += "------------\n";
+    mensagem += "------------\n";
+    mensagem += "*Pagamento em dinheiro*\n";
+    mensagem += "Sem troco\n";
+
+    const total = itens.reduce(
+      (acc, item) => acc + item.preco * item.quantidade,
+      0
+    );
+    mensagem += `*Total:* R$ ${total.toFixed(2)}\n\n`;
+    mensagem += "*Pedido:* Seu Número de Pedido";
+
+    return encodeURIComponent(mensagem); // Codifica a mensagem para uso em um URL
+  }
+
+  // Use a função para construir a mensagem
+  const mensagemCarrinho = construirMensagemCarrinho(itens);
+
+  // Crie o link do WhatsApp com a mensagem
+  const linkWhatsApp = `https://api.whatsapp.com/send?phone=11943735978&text=${mensagemCarrinho}`;
+
   return (
     <form>
       <S.CardCarrinho onClick={openModal}>
@@ -128,7 +161,6 @@ const Carrinho = () => {
             </li>
           ))}
         </S.ModalItens>
-
         <S.ModalPayment>
           <div
             style={{
@@ -143,7 +175,7 @@ const Carrinho = () => {
             <S.ModalTittlePay>Forma de pagamento</S.ModalTittlePay>
             <span></span>
           </div>
-          
+
           <S.ModalForm>
             <S.ModalLabel>
               <input
@@ -234,7 +266,7 @@ const Carrinho = () => {
           <S.ModalForm onSubmit={onSubmit(handleSubmit)}>
             <div>
               <label htmlFor="name">Nome:</label>
-              <input type="text" {...register("name")}/>
+              <input type="text" {...register("name")} />
               <S.Errors>{errors?.name?.message}</S.Errors>
               <label htmlFor="telefone">Telefone:</label>
               <input type="tel" id="telefone" {...register("telefone")} />
@@ -248,35 +280,33 @@ const Carrinho = () => {
             )}
 
             <S.ModalPrice>
-            <span>TOTAL</span>
-            <span>R${valorTotal.toFixed(2)}</span>
-          </S.ModalPrice>
+              <span>TOTAL</span>
+              <span>R${valorTotal.toFixed(2)}</span>
+            </S.ModalPrice>
 
-          <S.ModalButtons>
-            <S.BotaoContinuarComprando onClick={closeModal}>
-              <S.BsCart2Style />
-              Continuar compra
-            </S.BotaoContinuarComprando>
-            {itens.length === 0  ||
-            nome === "" ||
-            telefone === ""
-            ?(
-              <S.BotaoFinalizarIndisponivel onClick={() => errors?.name?.message}>
-                <S.BsArrowRightCircleStyle />
-                Finalizar compra
-              </S.BotaoFinalizarIndisponivel>
-            
-            ): (
-              <S.BotaoFinalizar onClick={openChildModal} >
-                <S.BsArrowRightCircleStyle />
-                Finalizar compra
-              </S.BotaoFinalizar>
-            )}
-            
-          </S.ModalButtons>
-          </S.ModalForm> 
+            <S.ModalButtons>
+              <S.BotaoContinuarComprando onClick={closeModal}>
+                <S.BsCart2Style />
+                Continuar compra
+              </S.BotaoContinuarComprando>
+              {itens.length === 0 || nome === "" || telefone === "" ? (
+                <S.BotaoFinalizarIndisponivel
+                  onClick={() => errors?.name?.message}
+                >
+                  <S.BsArrowRightCircleStyle />
+                  Finalizar compra
+                </S.BotaoFinalizarIndisponivel>
+              ) : (
+                <>
+                  <S.BotaoFinalizar onClick={openChildModal}>
+                    <S.BsArrowRightCircleStyle />
+                    Finalizar compra
+                  </S.BotaoFinalizar>
+                </>
+              )}
+            </S.ModalButtons>
+          </S.ModalForm>
         </S.ModalPayment>
-        
       </S.ModalStyleCart>
       <S.ModalFinalizarPedido
         isOpen={childModalIsOpen}

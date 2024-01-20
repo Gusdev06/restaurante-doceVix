@@ -1,9 +1,9 @@
 import styled from "styled-components";
+import Modal from "react-modal";
 import variables from "../../styles/variables";
 import { FiX } from "react-icons/fi";
 import { BiDish } from "react-icons/bi";
 import { ImPlus } from "react-icons/im";
-import Modal from "react-modal";
 import { Botao } from "../../styles";
 
 export const DiaSemana = styled.div`
